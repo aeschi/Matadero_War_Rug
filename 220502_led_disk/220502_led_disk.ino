@@ -55,8 +55,10 @@ void loop() {
   // disc4.setDelayRate(2000);
 
   // disc2.setDelayRate(1000);
-  getNeighbour();
+  // getNeighbour();
   //  disc2.SetMovement(1000, 170);
+  rotateDiscs();
+  
 }
 
 
@@ -104,10 +106,12 @@ void getNeighbour(){
   }
 }
 
-void rotateDiscs(int confVal){
-  for (int disc : discs){
-    disc.setMovement(confVal);
-  }
+void rotateDiscs(){
+  for (int x = 1; x< 5 - 1; x++) {
+    for (int y = 1; y < 4 - 1; y++) {
+        discs[y][x].test();
+      }
+    }
 }
 
 

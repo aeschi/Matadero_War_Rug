@@ -55,4 +55,12 @@ void Disc::SetMovement(int confVal){
   }
 } 
 
+void Disc::test(){
+  servo.attach(_pin);
+  servo.write(90);
+  delay(1000);
+  servo.write(0);
+  delay(1000);
+}
+
 
