@@ -11,15 +11,9 @@ Disc::Disc(int pin) {
   confVal = 0;
 
   beatTime = 1000;
-}
-void Disc::setDelayRate(int d){
-  digitalWrite(_pin, HIGH);
-  delay(d);
-  digitalWrite(_pin, LOW);
-  delay(d);
 } 
 
-void Disc::SetMovement(int confVal){
+void Disc::setMovement(int confVal){
   servo.attach(_pin);
   if(confVal>=90)
   {

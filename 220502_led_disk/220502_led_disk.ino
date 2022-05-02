@@ -52,17 +52,14 @@ void setup() {
 }
 
 void loop() {
-  // disc4.setDelayRate(2000);
-
-  // disc2.setDelayRate(1000);
-  // getNeighbour();
-  //  disc2.SetMovement(1000, 170);
+  
+  calculateConflictRate();
   rotateDiscs();
   
 }
 
 
-void getNeighbour(){
+void calculateConflictRate(){
 
   for (int x = 1; x< mapArrW - 1; x++) {
     for (int y = 1; y < mapArrH - 1; y++) {
@@ -109,7 +106,7 @@ void getNeighbour(){
 void rotateDiscs(){
   for (int x = 1; x< 5 - 1; x++) {
     for (int y = 1; y < 4 - 1; y++) {
-        discs[y][x].test();
+        discs[y][x].setMovement(discs[y][x].confVal);
       }
     }
 }
