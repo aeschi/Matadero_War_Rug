@@ -8,6 +8,8 @@ Disc::Disc(int pin) {
   pinMode(pin, OUTPUT);
   _pin = pin;
 
+  confVal = 0;
+
   beatTime = 1000;
 }
 void Disc::setDelayRate(int d){

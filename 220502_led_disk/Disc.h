@@ -11,7 +11,7 @@ public:
 
   int _pin;
 
-  float confVal;
+  int confVal;
   int beatTime;
 
 private:
