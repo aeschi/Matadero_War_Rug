@@ -8,6 +8,7 @@ public:
   Disc(int pin);
   void setMovement(int confVal);
   void test();
+  void reset();
 
   int _pin;
 

@@ -32,10 +32,10 @@ float kernel[3][3] = {
 
 // conflict map
 float mapArray[4][5] = {
-  {0, 0, 0, 100, 100},
-  {0, 0, 100, 100, 0},
-  {0, 100, 0, 0, 0},
-  {0, 0, 0, 100, 0},
+  {0, 0, 0, 90, 90},
+  {0, 0, 90, 90, 0},
+  {0, 90, 0, 0, 0},
+  {0, 0, 0, 90, 0},
 };
 
 int mapArrW = 5;
@@ -48,43 +48,41 @@ Disc discs[4][5] = {{disc1,disc2,disc3,disc4,disc5}, {disc6,disc7,disc8,disc9,di
 
 void setup() {
   Serial.begin(9600);      // open the serial port at 9600 bps:    
-  
+  // calculateConflictRate();
+
+  resetDiscs();
 }
 
 void loop() {
   
-  calculateConflictRate();
-  rotateDiscs();
+  // rotateDiscs();
   
 }
 
 
 void calculateConflictRate(){
 
-  for (int x = 1; x< mapArrW - 1; x++) {
-    for (int y = 1; y < mapArrH - 1; y++) {
+  for (int x = 0; x < mapArrW; x++) {
+    for (int y = 0; y < mapArrH; y++) {
 
       int sum = 0;
-      
-      int offsetX[8] = {0,1,1,1,0,-1,-1,-1};
-      int offsetY[8] = {-1,-1,0,1,1,1,0,-1};
-      //int sum = discs[y][x];
-      for(int i=0; i<sizeof(offsetX); i++){
-        int nx = x + offsetX[i]; // nx is neighbours x pos
-        int ny = y + offsetY[i]; // ny is neighbours y pos
 
-        if(nx<0 || nx > 5 || ny < 0 || ny > 5 ){
-          continue;
-        }
+      int offset[3] = {-1, 0, 1};
 
-        // Serial.println(discs[nx][ny]._pin);
-        int val = mapArray[nx][ny];
+      for (int i = 0; i < matrixsize; i++) {
+        for (int j = 0; j < matrixsize; j++) {
+          int nx = x - offset[i]; // nx is neighbours x pos
+          int ny = y - offset[j]; // ny is neighbours y pos
 
-        for (int kx = 0; kx <= 2; kx++) {
-          for (int ky = 0; ky <= 2; ky++) {     
+          nx = constrain(nx, 0, mapArrW - 1);
+          ny = constrain(ny, 0, mapArrH - 1);
 
-            // CONVOLUTION
-            sum = kernel[ky][kx] * val;
+          int val = mapArray[ny][nx];
+        
+          if (val >= 90) {
+            // and calculate the accumulated sum
+            sum += kernel[j][i] * val;
+            
           }
         }
       }
@@ -98,15 +96,27 @@ void calculateConflictRate(){
       sum = 90 + sum;
 
       discs[y][x].confVal = sum;
-        
+      // Serial.println(discs[y][x]._pin);
+      Serial.println(discs[y][x].confVal);
     }
   }
 }
 
 void rotateDiscs(){
-  for (int x = 1; x< 5 - 1; x++) {
-    for (int y = 1; y < 4 - 1; y++) {
-        discs[y][x].setMovement(discs[y][x].confVal);
+  for (int x = 0; x < 4 ; x++) {
+    for (int y = 0; y < 5 ; y++) {
+        // discs[y][x].setMovement(discs[y][x].confVal);
+        discs[x][y].test();
+      }
+    }
+}
+
+
+void resetDiscs(){
+  for (int x = 0; x < 4 ; x++) {
+    for (int y = 0; y < 5 ; y++) {
+        // discs[y][x].setMovement(discs[y][x].confVal);
+        discs[x][y].reset();
       }
     }
 }
