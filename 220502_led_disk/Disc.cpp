@@ -10,40 +10,41 @@ Disc::Disc(int pin) {
 
   confVal = 0;
 
-  beatTime = 1000;
+  beatTime = 100;
 } 
+
 
 void Disc::setMovement(int confVal){
   servo.attach(_pin);
   if(confVal>=90)
   {
     servo.write(confVal);
-    delay(1000);
+    delay(beatTime);
     servo.write(90);
-    delay(1000);
+    delay(beatTime);
     servo.write(confVal);
-    delay(1000);
+    delay(beatTime);
     servo.write(90);
   }
   else if(confVal<0)
   {
     servo.write(0);
-    delay(1000);
+    delay(beatTime);
     servo.write(confVal);
-    delay(1000);
+    delay(beatTime);
     servo.write(confVal);
-    delay(1000);
+    delay(beatTime);
     servo.write(90);
 
   }
   else
   {
     servo.write(90);
-    delay(1000);
+    delay(beatTime);
     servo.write(90);
-    delay(1000);
+    delay(beatTime);
     servo.write(confVal);
-    delay(1000);
+    delay(beatTime);
     servo.write(90);
 
   }
