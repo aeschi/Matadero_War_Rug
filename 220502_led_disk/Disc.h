@@ -7,7 +7,7 @@ class Disc {
 public:
   Disc(int pin);
   void setDelayRate(int delayRate);
-  void SetMovement(int delayRate, int rotation);
+  void SetMovement(int confVal);
 
   int _pin;
 

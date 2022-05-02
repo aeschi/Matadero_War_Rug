@@ -104,5 +104,10 @@ void getNeighbour(){
   }
 }
 
+void rotateDiscs(int confVal){
+  for (int disc : discs){
+    disc.setMovement(confVal);
+  }
+}
 
 

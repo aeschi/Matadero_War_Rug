@@ -19,12 +19,40 @@ void Disc::setDelayRate(int d){
   delay(d);
 } 
 
-void Disc::SetMovement(int delayRate, int rotation){
+void Disc::SetMovement(int confVal){
   servo.attach(_pin);
-  servo.write(90);
-  delay(delayRate);
-  servo.write(rotation);
-  delay(delayRate);
+  if(confVal>=90)
+  {
+    servo.write(confVal);
+    delay(1000);
+    servo.write(0);
+    delay(1000);
+    servo.write(confVal);
+    delay(1000);
+    servo.write(0);
+  }
+  else if(confVal<0)
+  {
+    servo.write(0);
+    delay(1000);
+    servo.write(confVal);
+    delay(1000);
+    servo.write(confVal);
+    delay(1000);
+    servo.write(0);
+
+  }
+  else
+  {
+    servo.write(0);
+    delay(1000);
+    servo.write(0);
+    delay(1000);
+    servo.write(confVal);
+    delay(1000);
+    servo.write(0);
+
+  }
 } 
 
 
