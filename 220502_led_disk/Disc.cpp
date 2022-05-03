@@ -9,7 +9,6 @@ Disc::Disc(int pin) {
   _pin = pin;
 
   confVal = 0;
-
   beatTime = 100;
 } 
 
@@ -62,9 +61,9 @@ void Disc::reset(){
 void Disc::test(){
   servo.attach(_pin);
   servo.write(180);
-  delay(500);
+  delay(400);
   servo.write(0);
-  delay(500);
+  delay(400);
   servo.write(90);
   // delay(1000);
 }

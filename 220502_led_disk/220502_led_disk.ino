@@ -65,8 +65,6 @@ void setup() {
 
 void loop() {
   currentMillis = millis();
-
-  
   rotateDiscs2();
 }
 
@@ -169,7 +167,7 @@ void rotateDiscs2() {
     seconds++;
     previousTime = currentMillis;
     beat = seconds % 5;
-    Serial.println(beat);
+    // Serial.println(beat);
   
     for (int x = 0; x < 5; x++) {
       for (int y = 0; y < 4; y++) {
