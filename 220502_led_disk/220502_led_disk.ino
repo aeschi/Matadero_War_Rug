@@ -11,20 +11,20 @@ Disc disc1(1);  // fake
 Disc disc2(2);
 Disc disc3(3);
 Disc disc4(4);
-Disc disc5(5);
-Disc disc6(6);
-Disc disc7(7);
-Disc disc8(8);
-Disc disc9(9);
-Disc disc10(10);
-Disc disc11(11);
-Disc disc12(12);
-Disc disc13(13);
-Disc disc14(44);
-Disc disc15(30);  // fake
-Disc disc16(31);  // fake
-Disc disc17(32);  // fake
-Disc disc18(45);
+Disc disc5(30); // fake
+Disc disc6(5);
+Disc disc7(6);
+Disc disc8(7);
+Disc disc9(8);
+Disc disc10(9);
+Disc disc11(10);
+Disc disc12(11);
+Disc disc13(12); 
+Disc disc14(13);  // fake
+Disc disc15(31);  
+Disc disc16(44);  
+Disc disc17(45);  
+Disc disc18(32);  // fake
 Disc disc19(46);
 Disc disc20(33);  // fake
 
