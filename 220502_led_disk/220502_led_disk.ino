@@ -66,6 +66,7 @@ void setup() {
 void loop() {
   currentMillis = millis();
   rotateDiscs2();
+  // resetDiscis();
 }
 
 
@@ -104,9 +105,7 @@ void calculateConflictRate() {
       sum = 90 + sum;
 
       discs[y][x].confVal = sum;
-      // Serial.println("pin: ");
-      // Serial.println(discs[y][x]._pin);
-      Serial.println(discs[y][x].confVal);
+      // Serial.println(discs[y][x].confVal);
     }
   }
 }
@@ -218,6 +217,7 @@ void rotateDiscs2() {
     }
   }
 }
+
 
 void resetDiscs() {
 
