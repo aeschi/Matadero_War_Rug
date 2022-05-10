@@ -46,11 +46,7 @@ float mapArray[4][5] = {
 
 int mapArrW = 5;
 int mapArrH = 4;
-
 int matrixsize = 3;
-
-int beatTime =0;
-int counter = 0;
 int beat = 0;
 
 
@@ -65,8 +61,12 @@ void setup() {
 
 void loop() {
   currentMillis = millis();
-  rotateDiscs2();
-  // resetDiscis();
+  rotateDiscs();
+  // reset discs for initial position
+  // resetDiscs();
+  // test movement swing 180 degrees
+  // testDiscs();
+  
 }
 
 
@@ -105,7 +105,7 @@ void calculateConflictRate() {
       sum = 90 + sum;
 
       discs[y][x].confVal = sum;
-      // Serial.println(discs[y][x].confVal);
+      Serial.println(discs[y][x].confVal);
     }
   }
 }
@@ -132,7 +132,7 @@ void rotateDiscs() {
             discs[y][x].setMovement(90);
           }
         }
-        else if(discs[y][x].confVal<0)
+        else if(discs[y][x].confVal<90)
         {
           if(beat == 0){
             discs[y][x].setMovement(90);
@@ -151,7 +151,7 @@ void rotateDiscs() {
           }else if(beat == 1){
             discs[y][x].setMovement(90);
           }else if(beat == 2){
-            discs[y][x].setMovement(discs[y][x].confVal);
+            discs[y][x].setMovement(discs[y][x].confVal * 0.5 + 90);
           }else if(beat == 3){
             discs[y][x].setMovement(90);
           }
@@ -161,12 +161,13 @@ void rotateDiscs() {
   }
 }
 
+
 void rotateDiscs2() {
  if((currentMillis-previousTime)>=EXE_INTERVAL){
     seconds++;
     previousTime = currentMillis;
     beat = seconds % 5;
-    // Serial.println(beat);
+    // Serial.println(beatx);
   
     for (int x = 0; x < 5; x++) {
       for (int y = 0; y < 4; y++) {
@@ -206,9 +207,9 @@ void rotateDiscs2() {
           }else if(beat == 1){
             discs[y][x].setMovement(90);
           }else if(beat == 2){
-            discs[y][x].setMovement(90 + discs[y][x].confVal);
+            discs[y][x].setMovement(discs[y][x].confVal * 0.5 + 90);
           }else if(beat == 3){
-            discs[y][x].setMovement(90 + discs[y][x].confVal);
+            discs[y][x].setMovement(discs[y][x].confVal * 0.5 + 90);
           }else if(beat == 4){
             discs[y][x].setMovement(90);
           }
@@ -224,9 +225,17 @@ void resetDiscs() {
   Serial.println("reset");
   for (int x = 0; x < 4; x++) {
     for (int y = 0; y < 5; y++) {
-      // discs[y][x].setMovement(discs[y][x].confVal);
       discs[x][y].reset();
-      // discs[x][y].test();
+    }
+  }
+  
+}
+
+void testDiscs() {
+
+  for (int x = 0; x < 4; x++) {
+    for (int y = 0; y < 5; y++) {
+      discs[x][y].test();
     }
   }
   
